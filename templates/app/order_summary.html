@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <title>Foodies - Order Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .header {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            order: 1;
+        }
+
+        .logo img {
+            width: auto;
+            height: 100px; /* Adjust the height as desired */
+        }
+
+        .header h1 {
+            margin: 0;
+            order: 2;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .logout-button {
+            order: 3;
+        }
+
+        .logout-button button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button button:hover {
+            background-color: #c0392b;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+        }
+
+        .order-summary h3 {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .order-item {
+            margin-bottom: 5px;
+        }
+
+        .total_price {
+            font-weight: bold;
+        }
+
+        .submit-order {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+        </div>
+        <h1>Foodie</h1>
+        <div class="logout-button">
+            <button>back</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="order-summary">
+            <h3>Order Summary : </h3>
+            <form method="post" action="{% url 'order' %}">
+            {% csrf_token %}
+            <p>Username: <input type="text" id="username" name="username" value="{{username}}"></p>
+            <p>Order ID: <input type="text" id="order_id" name="order_id" value="{{order_id}}"></p>
+            <p>Order Date: <input type="text" id="order_date" name="order_date" value="{{order_date}}"></p>
+            <p>Order Time: <input type="text" id="order_time" name="order_time" value="{{order_time}}"></p>
+            <p>Address: <input type="text" id="address" name="address"></p>
+            <p>Total Amount : $<input type="text" id="price-field" name="price"></p>
+            <div class="submit-order">
+                <a href="http://127.0.0.1:8000/payment/">
+                <button type="submit" >Submit Order</button></a>
+            </div></form>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var totalPrice = localStorage.getItem('totalPrice');
+            document.getElementById('price-field').value = totalPrice;
+
+
+            // Display the total price
+            var totalElement = document.getElementsByName('total_price')[0];
+            totalElement.textContent = 'Total: $' + totalPrice;
+
+        };
+
+        function submitOrder() {
+            // Clear the order items and total price from local storage
+            localStorage.removeItem('items');
+            localStorage.removeItem('totalPrice');
+
+        }
+    </script>
+</body>
+</html>

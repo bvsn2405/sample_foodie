@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+    <title>Foodies - Payment</title>
+    <style>
+       body {
+              margin: 0;
+
+        background-color :  #f2f2f2;
+    }
+          .header {
+         background-color: #e74c3c;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    }
+
+    .logo img {
+        height: 50px;
+        width: auto;
+    }
+
+    .header h1 {
+        font-size: 50px;
+        margin: 0;
+    }
+
+    .header .links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .header .links h3 {
+        margin: 0;
+    }
+.payment{
+align:center;
+}
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .payment-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .payment-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .payment-form input[type="text"],
+        .payment-form input[type="number"],
+        .payment-form input[type="email"],
+        .payment-form select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .payment-form button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-form button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+ <div class="header">
+    <div class="logo">
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+    </div>
+
+    <h1>Foodie</h1>
+
+     <div class="links">
+      <a href="http://127.0.0.1:8000/order/">  <button> <h3>Back</h3></button></a>
+          &nbsp;&nbsp;
+    </div>
+</div>
+    <div class="payment">
+        <h1>Payment details :</h1>
+    </div>
+
+    <div class="container">
+        <form method="post" action="{% url 'payment' %}">
+            {% csrf_token %}
+        <div class="payment-form">
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card_number" required>
+
+            <label for="card-name">Cardholder Name:</label>
+            <input type="text" id="card-name" name="cardholder" required>
+
+            <label for="expiration-date">Expiration Date:</label>
+            <input type="text" id="expiration-date" name="expirydate" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+            <a href="http://127.0.0.1:8000/home/">
+            <button type="submit">Process Payment</button></a>
+        </div>
+        </form>
+    </div>
+
+    <script>
+        function processPayment() {
+            // Handle payment processing logic here
+
+            // Once payment is processed, you can navigate to a success page
+        }
+    </script>
+</body>
+</html>

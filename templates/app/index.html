@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <title>Foodies - Home</title>
+    <style>
+      body {
+              margin: 0;
+
+        background-color :  #f2f2f2;
+    }
+
+        .header {
+         background-color: #e74c3c;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    }
+
+    .logo img {
+        height: 50px;
+        width: auto;
+    }
+
+    .header h1 {
+        font-size: 50px;
+        margin: 0;
+    }
+
+    .header .links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .header .links h3 {
+        margin: 0;
+    }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 44px;
+
+
+        }
+
+        .welcome-message h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-message p {
+            color: red;
+            font-size: 20px;
+        }
+
+        .search-bar {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 500px;
+            border-radius: 3px;
+            border: 1px;
+            font-size: 16px;
+        }
+
+        .search-bar input[type="submit"] {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar input[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+
+        .description {
+        margin-left: 20px;
+            text-align: left;
+            margin-bottom: 40px;
+                    font-style: italic;
+
+        }
+
+        .description p {
+            color: BLACK;
+            font-size: 20px;
+            font-weight: normal;
+
+        }
+     .image-grid {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+
+    }
+
+    .image-grid .image-container {
+        width: 200px;
+        height: 200px;
+
+
+    }
+
+    .image-grid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius:50%;
+        border:2px solid black;
+
+    }
+
+    .image-grid p {
+        margin-top: 5px;
+        font-weight: bold;
+    }
+    .scrolling-element {
+        animation: scroll 10s linear infinite;
+        color: red;
+        font-size: 22px;
+        font-weight: bold;
+
+    }
+    </style>
+</head>
+<body>
+
+ <div class="header">
+    <div class="logo">
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+    </div>
+
+    <h1>Foodie</h1>
+
+    <div class="links">
+      <a href="/signup">  <button> <h3>Sign Up</h3></button></a>
+    &nbsp;
+        <a href="/login"><button> <h3>Login</h3></button></a>
+
+        &nbsp;&nbsp;
+    </div>
+</div>
+    <div class="container">
+        <div class="welcome-message">
+            <h2 style="font-size: 34px;color:red; animation: blink 1s infinite;">Welcome to Foodie</h2>
+
+<style>
+    @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+</style>
+        </div>
+<div class="scrolling-element">
+
+            <p>Order delicious food online and experience the joy of great taste.</p>
+    <style>
+     @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(100%); }
+    }</style>
+
+        </div>
+        <div class="search-bar">
+            <form action="{% url 'menu' %}" method="GET">
+             <input type="text" name="search" placeholder="Search for food">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        <div class="description">
+
+<p>“““ Experience a world of culinary delights with Foodie.
+                Discover diverse cuisines and find your favorite dishes.
+                From Italian pasta to Indian curries, explore a range of flavors.
+                Foodie offers menus, recipes, and restaurant recommendations.
+                Catering to various dietary preferences, it's easy to find options that suit you. With convenient online ordering, delicious food is just a few clicks away. Say goodbye to lengthy reservations and queues. Let Foodie satisfy your cravings from the comfort of your home. Embark on a culinary journey, expand your horizons, and indulge in global gastronomy.
+                With Foodie, every meal is an opportunity to savor incredible flavors.”””</p>
+        </div>
+    </div>
+<div class="image-grid">
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <div class="image-container">
+         <a href="http://127.0.0.1:8000/menu/">
+        <img src="{% static 'images/veg.jpg' %}" alt="veg" style="border-radius:50%;border:2px solid black;">
+             <p>Veg</p></a>
+    </div>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <div class="image-container">
+        <a href="http://127.0.0.1:8000/menu/">
+        <img src="{% static 'images/nonveg.jpg' %}" alt="nonveg">
+            <p>Non-Veg</p></a>
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <div class="image-container">
+        <a href="http://127.0.0.1:8000/menu/">
+        <img src="{% static 'images/bakery.jpg' %}" alt="bakery">
+            <p>Bakery</p></a>
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <div class="image-container">
+        <a href="http://127.0.0.1:8000/menu/">
+        <img src="{% static 'images/beverages.jpg' %}" alt="beverages">
+            <p>Beverages</p></a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <title>Foodies - Sign Up</title>
+    <style>
+        body {
+              margin: 0;
+
+        background-color :  #f2f2f2;
+    }
+
+        .header {
+         background-color: #e74c3c;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    }
+
+    .logo img {
+        height: 50px;
+        width: auto;
+    }
+
+    .header h1 {
+        font-size: 50px;
+        margin: 0;
+    }
+
+    .header .links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .header .links h3 {
+        margin: 0;
+    }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            background-color:;
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="tel"] {
+            width: 90%;
+            padding: 5px;
+            border-radius: 7px;
+            border: 1px solid #ccc;
+
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+        .alert {
+        color: red;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+    }
+
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+    </div>
+
+    <h1>Foodie</h1>
+
+    <div class="links">
+        <a href="http://127.0.0.1:8000/">
+            <button><h3>back</h3></button>
+        </a>
+        &nbsp;
+        <a href="/login">
+            <button><h3>Login</h3></button>
+        </a>
+
+        &nbsp;&nbsp;
+    </div>
+</div>
+</div>>
+<div class="container">
+    <h1>Sign Up</h1>
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Enter your username">
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname" placeholder="Enter your first name">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" placeholder="Enter your last name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Enter your email address">
+            <div class="alert alert-danger" role="alert">
+                {{error2}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter your password">
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" name="confirm_password" placeholder="Confirm your password">
+            <div class="alert alert-danger" role="alert">
+                {{error1}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Sign Up">
+        </div>
+    </form>
+</div>
+</body>
+</html>

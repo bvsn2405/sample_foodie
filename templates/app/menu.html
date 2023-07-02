@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <title>Foodies - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .header {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            order: 1;
+        }
+
+        .logo img {
+            width: auto;
+            height: 100px; /* Adjust the height as desired */
+        }
+
+        .header h1 {
+            margin: 0;
+            order: 2;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .logout-button {
+            order: 3;
+        }
+
+        .logout-button button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button button:hover {
+            background-color: #c0392b;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .food-type {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .food-type:hover {
+            background-color: #f2f2f2;
+        }
+
+        .food-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .food-item .food-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .food-item .food-controls button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .food-item .food-controls button:hover {
+            background-color: #c0392b;
+        }
+
+        .food-item .food-quantity {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+        }
+
+        .order-summary h3 {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .order-item {
+            margin-bottom: 5px;
+        }
+
+        .total-price {
+            font-weight: bold;
+        }
+
+        .submit-order {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+        </div>
+        <h1>Foodie</h1>
+        <div class="logout-button">
+            <a href="http://127.0.0.1:8000/login/">
+            <button>Login</button></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="food-items">
+            <div class="food-type">
+                <h3>Veg</h3>
+                <ul>
+                    <li class="food-item">
+                        <span class="food-name">Paneer Tikka</span>
+                        <span class="food-price">$9.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                    <li class="food-item">
+                        <span class="food-name">Veg Biryani</span>
+                        <span class="food-price">$12.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                    <li class="food-item">
+                        <span class="food-name">Vegetable Pizza</span>
+                        <span class="food-price">$14.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="food-type">
+                <h3>Non-Veg</h3>
+                <ul>
+                    <li class="food-item">
+                        <span class="food-name">Chicken Biryani</span>
+                        <span class="food-price">$15.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                    <li class="food-item">
+                        <span class="food-name">Butter Chicken</span>
+                        <span class="food-price">$16.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                    <li class="food-item">
+                        <span class="food-name">Fish Curry</span>
+                        <span class="food-price">$18.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="food-type">
+                <h3>Bakery</h3>
+                <ul>
+                    <li class="food-item">
+                        <span class="food-name">Croissants</span>
+                        <span class="food-price">$3.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                    <li class="food-item">
+                        <span class="food-name">Donuts</span>
+                        <span class="food-price">$2.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                    <li class="food-item">
+                        <span class="food-name">Apple Pie</span>
+                        <span class="food-price">$5.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="food-type">
+                <h3>Beverages</h3>
+                <ul>
+                    <li class="food-item">
+                        <span class="food-name">Coffee</span>
+                        <span class="food-price">$2.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                    <li class="food-item">
+                        <span class="food-name">Tea</span>
+                        <span class="food-price">$1.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                    <li class="food-item">
+                        <span class="food-name">Smoothies</span>
+                        <span class="food-price">$4.99</span>
+                        <div class="food-controls">
+                            <button onclick="decreaseQuantity(this)">-</button>
+                            <span class="food-quantity">0</span>
+                            <button onclick="increaseQuantity(this)">+</button>
+                            <button onclick="addToOrder(this)">Add</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <ul id="order-list"></ul>
+            <p class="total-price">Total: $0.00</p>
+            <div class="submit-order">
+                <a href=" http://127.0.0.1:8000/order/">
+                <button onclick="submitOrder()">Submit Order</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to increase the quantity of the selected item
+        function increaseQuantity(button) {
+            var quantityElement = button.parentNode.querySelector('.food-quantity');
+            var quantity = parseInt(quantityElement.textContent);
+            quantity++;
+            quantityElement.textContent = quantity;
+        }
+
+        // Function to decrease the quantity of the selected item
+        function decreaseQuantity(button) {
+            var quantityElement = button.parentNode.querySelector('.food-quantity');
+            var quantity = parseInt(quantityElement.textContent);
+            if (quantity > 0) {
+                quantity--;
+                quantityElement.textContent = quantity;
+            }
+        }
+
+        // Function to add the selected item to the order
+        function addToOrder(button) {
+            var foodItem = button.parentNode.parentNode;
+            var foodName = foodItem.querySelector('.food-name').textContent;
+            var foodPrice = parseFloat(foodItem.querySelector('.food-price').textContent.substr(1));
+            var quantity = parseInt(foodItem.querySelector('.food-quantity').textContent);
+            var existingOrderItem = document.querySelector('#order-list li[data-food-name="' + foodName + '"]');
+
+            if (existingOrderItem) {
+                var existingQuantity = parseInt(existingOrderItem.querySelector('.order-quantity').textContent);
+                var newQuantity = existingQuantity + quantity;
+                existingOrderItem.querySelector('.order-quantity').textContent = newQuantity;
+                existingOrderItem.querySelector('.order-price').textContent = '$' + (foodPrice * newQuantity).toFixed(2);
+            } else {
+                var orderItem = document.createElement('li');
+                orderItem.setAttribute('data-food-name', foodName);
+                orderItem.innerHTML = '<span class="order-name">' + foodName + '</span><span class="order-quantity">' + quantity + '</span><span class="order-price">$' + (foodPrice * quantity).toFixed(2) + '</span><button onclick="removeFromOrder(this)">Remove</button>';
+                document.querySelector('#order-list').appendChild(orderItem);
+            }
+
+            updateTotalPrice();
+        }
+
+        // Function to remove the selected item from the order
+        function removeFromOrder(button) {
+            var orderItem = button.parentNode;
+            orderItem.parentNode.removeChild(orderItem);
+            updateTotalPrice();
+        }
+
+        // Function to update the total price of the order
+        function updateTotalPrice() {
+            var total = 0;
+            var orderItems = document.querySelectorAll('#order-list li');
+            orderItems.forEach(function (item) {
+                var price = parseFloat(item.querySelector('.order-price').textContent.substr(1));
+                total += price;
+            });
+            document.querySelector('.total-price').textContent = 'Total: $' + total.toFixed(2);
+            localStorage.setItem('totalPrice', total);
+            localStorage.setItem('price', price);
+             fetch('/order/?total_price=' + encodeURIComponent(totalPrice))
+              .then(function(response) {
+                if (response.ok) {
+                  console.log('Data processed successfully');
+                } else {
+                  console.log('Failed to process data');
+                }
+              })
+              .catch(function(error) {
+                console.log('Error occurred:', error);
+              });
+
+        }
+
+        // Function to submit the order
+        function submitOrder() {
+            var orderItems = document.querySelectorAll('#order-list li');
+            var orderSummary = '';
+            orderItems.forEach(function (item) {
+                var foodName = item.querySelector('.order-name').textContent;
+                var quantity = parseInt(item.querySelector('.order-quantity').textContent);
+                orderSummary += foodName + ' x ' + quantity + '\n';
+            });
+
+            // You can add your logic here to handle the order submission
+
+            // Display the order summary in an alert
+            alert('Order Summary:\n' + orderSummary);
+        }
+    </script>
+</body>
+</html>
